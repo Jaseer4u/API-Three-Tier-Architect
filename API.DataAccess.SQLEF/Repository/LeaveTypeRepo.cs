@@ -18,16 +18,21 @@ namespace API.DataAccess.SQLEF.Repository
             _db = db;
         }
 
-        public bool Create(LeaveType entity)
+        public async Task<bool> Create(LeaveType entity)
         {
             _db.LeaveType.Add(entity);
-            return Save();
+            return await Save();
         }
 
-        public bool Delete(LeaveType entity)
+        public async Task<bool> Delete(int ID)
         {
+            var entity = await _db.LeaveType.FindAsync(ID);
+            if (entity == null)
+            {
+                return false;
+            }
             _db.LeaveType.Remove(entity);
-            return Save();
+            return await Save();
         }
 
         public ICollection<LeaveType> FindAll()
@@ -35,20 +40,20 @@ namespace API.DataAccess.SQLEF.Repository
             return _db.LeaveType.ToList();
         }
 
-        public LeaveType GetByID(int ID)
+        public async Task<LeaveType> GetByID(int ID)
         {
-            return _db.LeaveType.Find(ID);
+            return await _db.LeaveType.FindAsync(ID);
         }
 
-        public bool Save()
+        public async Task<bool> Save()
         {
-            return _db.SaveChanges() > 0;
+            return await _db.SaveChangesAsync() > 0;
         }
 
-        public bool Update(LeaveType entity)
+        public async Task<bool> Update(LeaveType entity)
         {
             _db.LeaveType.Update(entity);
-            return Save();
+            return await Save();
         }
     }
 }

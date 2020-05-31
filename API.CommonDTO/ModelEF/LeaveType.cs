@@ -10,7 +10,7 @@ namespace API.CommonDTO.ModelEF
         public int Id { get; set; }
         [Required]
         [Column(TypeName = "nvarchar(300)")]
-        public string Name { get; set; }
+        public string LTName { get; set; }
         public DateTime DateCreated { get; set; }
     }
 }

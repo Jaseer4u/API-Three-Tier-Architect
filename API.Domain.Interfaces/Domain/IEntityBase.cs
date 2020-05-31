@@ -10,11 +10,11 @@ namespace API.Domain.Interfaces.Domain
     public interface IEntityBase<T> where T : class
     {
         ICollection<T> FindAll();
-        T GetByID(int ID);
-        bool Create(T entity);
-        bool Update(T entity);
-        bool Delete(T entity);
-       
+        Task<T> GetByID(int ID);
+        Task<bool> Create(T entity);
+        Task<bool> Update(T entity);
+        Task<bool> Delete(int ID);
+
     }
     
 }

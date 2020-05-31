@@ -16,28 +16,28 @@ namespace API.Domain.Entity
         {
             _repo = repo;
         }
-        public bool Create(LeaveType entity)
+        public async Task<bool> Create(LeaveType entity)
         {
-           return _repo.Create(entity);
+           return await _repo.Create(entity);
         }
 
-        public bool Delete(LeaveType entity)
+        public async Task<bool> Delete(int ID)
         {
-            return _repo.Create(entity);
+            return await _repo.Delete(ID);
         }
 
-        public ICollection<LeaveType> FindAll()
+        public  ICollection<LeaveType> FindAll()
         {
-            return _repo.FindAll();
+            return  _repo.FindAll();
         }
 
-        public LeaveType GetByID(int ID)
+        public async Task<LeaveType> GetByID(int ID)
         {
-            return _repo.GetByID(ID);
+            return await _repo.GetByID(ID);
         }
-        public bool Update(LeaveType entity)
+        public async Task<bool> Update(LeaveType entity)
         {
-            return _repo.Update(entity);
+            return await _repo.Update(entity);
         }
     }
 }

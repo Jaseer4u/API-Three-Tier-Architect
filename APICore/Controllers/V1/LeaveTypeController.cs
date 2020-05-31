@@ -6,10 +6,12 @@ using API.CommonDTO.ModelEF;
 using API.Domain.Interfaces.Domain;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Web.Http;
+
 
 namespace APICore.Controllers.V1
 {
-    [Route("v1/api/[controller]")]
+    [Route("api/v1/LeaveType")]   
     [ApiController]
     public class LeaveTypeController : ControllerBase
     {
@@ -24,22 +26,44 @@ namespace APICore.Controllers.V1
 
         // GET: api/LeaveType
         [HttpGet]
+        [Route("GetAll")]
         public IEnumerable<LeaveType> Get()
         {
             return _Entity.FindAll();
         }
 
         // GET: api/LeaveType/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet]
+        [Route("GetById{id}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            return "value";
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var leaveType = await _Entity.GetByID(id);
+
+            if (leaveType == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(leaveType);
         }
 
         // POST: api/LeaveType
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("Save")]
+        public async Task<IActionResult> Save([FromBody] LeaveType leaveType)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            await _Entity.Create(leaveType);
+            return Ok(leaveType);
         }
 
         // PUT: api/LeaveType/5
@@ -49,9 +73,15 @@ namespace APICore.Controllers.V1
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("Delete")]
+        public async Task<IActionResult> Delete(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(await _Entity.Delete(id));
         }
     }
 }
