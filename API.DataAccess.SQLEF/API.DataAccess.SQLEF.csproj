@@ -112,6 +112,8 @@
     <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\LeaveTypeRepo.cs" />
+    <Compile Include="Repository\LoginRepo.cs" />
+    <Compile Include="Repository\UserRegistrationRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

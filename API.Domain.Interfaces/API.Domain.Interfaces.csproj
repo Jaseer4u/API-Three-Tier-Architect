@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Domain\ILeaveTypeEntity.cs" />
     <Compile Include="Domain\IEntityBase.cs" />
+    <Compile Include="Domain\ILoginEntity.cs" />
+    <Compile Include="Domain\IUserRegistrationEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

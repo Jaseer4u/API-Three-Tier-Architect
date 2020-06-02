@@ -45,7 +45,14 @@ namespace APICore
 
 
             services.AddScoped<ILeaveTypeEntity, LeaveTypeEntity>();
+            services.AddScoped<IUserRegistrationEntity, UserRegistrationEntity>();
+            services.AddScoped<ILoginEntity, LoginEntity>();
+
+
+
             services.AddScoped<ILeaveTypeRepo, LeaveTypeRepo>();
+            services.AddScoped<IUserRegistrationRepo, UserRegistrationRepo>();
+            services.AddScoped<ILoginRepo, LoginRepo>();
 
         }
 

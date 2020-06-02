@@ -15,5 +15,6 @@ namespace API.DataAccess.SQLEF.Data
 
         }
         public DbSet<LeaveType> LeaveType { get; set; }
+        public DbSet<UserRegistration> UserRegistrations { get; set; }
     }
 }
